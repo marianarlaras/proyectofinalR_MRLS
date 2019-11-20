@@ -1,0 +1,131 @@
+---
+title: "Proyecto Final R"
+author: "Mariana Lara"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: spacelab
+    highlight: tango
+    toc: true
+    toc_float: true
+    toc_depth: 6
+    fig_width:  10
+    fig_height: 8
+    
+---
+
+<div style="text-align: justify">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+
+
+
+![ ](P1.jpg)
+
+_En mi caso, he decidido realizar esta práctica de forma divertida, para enfocar los conocimientos adquiridos en mi vida diaria. Gracias a aplicaciones como twitter y a las APIs de Spotify, he podido encontrar maneras de aprender y distraerme al mismo tiempo._
+
+___
+
+# Sección 1: **REGEX**
+___
+
+Las expresiones regulares **(Regex)** son patrones de coincidencia, utilizados para encontrar una determinada combinación de caracteres dentro de una cadena de texto. Estos patrones pueden  pueden usarse para _comparar, extraer, remplazar o dividir_ segmentos de un texto particular, en otra cadena, texto largo o documento.
+
+Al respecto, [**John D. Cook**](https://www.johndcook.com/blog/services-2/) consultor en matemáticas aplicadas, estadística y privacidad de data, 
+menciona en su cuenta de twitter, destinada a expresiones regulares [(RegexTip)](https://twitter.com/RegexTip), cuatro tips importantes que le ayudaron a comprender de ellas mientras aprendía:
+
+- Las expresiones regulares no son insignificantes, no son triviales, pero tampoco son tan difíciles. Solo toman un poco de estudio.
+- Las expresiones regulares no son comodines de líneas de comando, contienen algunos de los mismos símbolos, pero no significan lo mismo, hay que aislar este pensamiento porque suelen causar confusión.
+- Las expresiones regulares son un pequeño lenguaje de programación, generalmente están contenidas dentro de otro lenguaje de programación, hay que pensar en ellas, como pequeños fragmentos de un idioma extranjero, como una cita en francés dentro de la prosa inglesa. Por ende, no hay que esperar que las reglas del idioma externo tengan ninguna relación con las reglas internas.
+- Los _Character clases_ ([]), son un pequeño sub-lenguaje dentro de las expresiones regulares. Una vez que te das cuenta de eso y no esperas que se apliquen las reglas para las expresiones fuera de ellos, pueden hacerse mas sencillos de entender.
+
+___
+
+### Enlaces de Interés
+
+<center>
+Table: Comparativa páginas de _Regex_
+
+-| **Fuente Ganadora** | **Fuente a Mejorar** | 
+-| :-------------------:| :-------------------:|
+🔗**Link** | [Regex One](https://regexone.com/) | [Regular Expressions.Info](https://www.regular-expressions.info/tutorial.html)
+✅**Pros** | Permite aprender expresiones regulares de manera interactiva y simple, además de que trae tutoriales para lenguajes en específico. En esta pagina, definitivamente, se defiende que la practica hace al maestro...| Tiene una basta gama de tutoriales Regex, creo está bastante completa la información… (_no me atreví a seguir curioseando_)
+‼️ **Cons** | No la conseguí antes.| En lo personal, juzgo mucho la presentación, colores y/o formatos de las páginas, debemos ser sumamente detallistas en como presentamos el contenido de nuestro trabajo puesto que entre **TANTAS** fuentes disponibles, no podemos darnos el lujo de espantar usuarios.
+☑️ **Score** | "10/10"| 5.4/10
+</center>
+
+Algunos Ejemplos de tweets contenidos en la cuenta de   [(RegexTip)](https://twitter.com/RegexTip)
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Reminder: * means zero or more, + means one or more, ? means zero or one.</p>&mdash; Regular Expression (@RegexTip) <a href="https://twitter.com/RegexTip/status/1192109981027504129?ref_src=twsrc%5Etfw">November 6, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="tl" dir="ltr">Regex crossword <a href="https://t.co/Uuj2gjYlWM">https://t.co/Uuj2gjYlWM</a></p>&mdash; Regular Expression (@RegexTip) <a href="https://twitter.com/RegexTip/status/1168902012941078528?ref_src=twsrc%5Etfw">September 3, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Outside of a character class, the only special characters in regular expressions are [\^$.|?*+() Most characters are treated literally.</p>&mdash; Regular Expression (@RegexTip) <a href="https://twitter.com/RegexTip/status/1163828543463264261?ref_src=twsrc%5Etfw">August 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+___
+
+# Sección 2: **RMarkDown**
+
+___
+
+### **Comparativa de Enlaces**
+
+<center>
+Table: Comparativa páginas de _R Markdown_
+
+-| **Fuente Ganadora** | **Fuente a Mejorar** | 
+-| :-------------------:| :-------------------:|
+🔗 **Link** | [R Markdown from R Studio](https://rmarkdown.rstudio.com/index.html) | [markdown.es](https://markdown.es/)
+✅ **Pros** | Es la página más completa en contenido. Desde tutoriales básicos y explicitos, hasta formatos mas avanzados, esta fuente concatena la información necesaria para ser un experto en R Markdown.| Información  explicada en español, con enlaces externos útiles.
+‼️ **Cons** |Puede llegar a parecer abrumadora la cantidad de contenido si no se ha investigado con paciencia como utilizarla. | El formato de la página no lo hace sencillo de entender, parece el contenido estar muy separado, en desorden, con un tema no tan agradable a la vista y mucha publicidad que entorpece su entendimiento.
+☑️ **Score** | 9.5/10 | 4/10
+</center>
+___
+
+# Sección 3: **🎵Spotify-R**
+
+SpotifyR, es un contenedor de R, utilizado para extraer características de audio, pistas y otra información curiosa de la API web de [Spotify for Developers]( https://developer.spotify.com/).
+Al procesar por lotes las solicitudes de API, se pueden realizar cosas como:
+
+- Ingresar a la información de artistas específicos.
+- Recuperar discografías.
+- Recopilar información de las diversas características de audio de Spotify.
+- Medir métricas de popularidad de pista / álbum. 
+- Obtener información de canciones y listas de reproducción para un usuario de Spotify determinado.
+- Muchas opciones interesantes más!
+
+![ ](WebAPI_intro.png)
+> _Based on simple REST principles, the Spotify Web API endpoints return JSON metadata about music artists, albums, and tracks, directly from the Spotify Data Catalogue._
+
+## Instalación
+Se precisa de la instalación del paguete "spotifyr" y la lectura de las distintas librerias a continuación:
+```
+install.packages('spotifyr')
+library(spotifyr)
+library(dplyr)
+library(plotly)
+library(ggplot2)
+library(tidyverse)
+library(knitr)
+```
+*Para mayor información en referencia a la autenticación de usuario y utilidades de esta api, puedes revisar el siguiente [enlace](https://github.com/charlie86/spotifyr#readme).*
+
+```{r identificarme, include=FALSE}
+
+```
+
+## Including Plots
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+</div>
