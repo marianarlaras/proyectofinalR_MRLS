@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-![ ](P1.jpg)
+ ](recursos/P1.jpg)
 
 _En mi caso, he decidido realizar esta práctica de forma divertida, para enfocar los conocimientos adquiridos en mi vida diaria._
 
@@ -49,7 +49,7 @@ menciona en su cuenta de twitter, destinada a expresiones regulares [(RegexTip)]
 <center>Problemas triviales!</center>
 
 <center>
-![ ](RGX.png)
+ ](recursos/RGX.png)
 </center>
 ___
 
@@ -141,7 +141,7 @@ ___
 
 En la presente sección, se realiza un breve análisis exploratorio de los datos contenidos en **FIFA 19 complete player Dataseet**, el cual expone los atributos detallados para cada jugador registrado en la ultima edición o base de datos FIFA19.
 
-![](FIFA1.jpg)
+](recursos/FIFA1.jpg)
 
 He utilizado el DS disponible en [GitHub](https://github.com/amanthedorkknight/fifa18-all-player-statistics/tree/master/2019), donde cada jugador se describe con mas de 80 atributos diferentes. Esta informacion se obtiene originalmente del website [SoFiFa](https://sofifa.com/).
 
