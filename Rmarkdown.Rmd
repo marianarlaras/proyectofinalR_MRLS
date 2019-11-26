@@ -55,7 +55,7 @@ ___
 
 ## Comparativa Enlaces de Interés
 
-En la tabla a continuación, comparo dos páginas web dedicadas a enseñar de expresiones regulares, donde la columna de la izquiera representa mi fuente ganadora y la de la derecha.
+En la tabla a continuación, comparo dos páginas web dedicadas a enseñar de expresiones regulares, donde la columna de la izquierda representa mi fuente ganadora y la de la derecha.
 
 <center>
 Table: Comparativa páginas de _Regex_ 
@@ -143,12 +143,12 @@ En la presente sección, se realiza un breve análisis exploratorio de los datos
 
 ![](recursos/FIFA1.jpg)
 
-He utilizado el DS disponible en [GitHub](https://github.com/amanthedorkknight/fifa18-all-player-statistics/tree/master/2019), donde cada jugador se describe con mas de 80 atributos diferentes. Esta informacion se obtiene originalmente del website [SoFiFa](https://sofifa.com/).
+He utilizado el DS disponible en [GitHub](https://github.com/amanthedorkknight/fifa18-all-player-statistics/tree/master/2019), donde cada jugador se describe con mas de 80 atributos diferentes. Esta información se obtiene originalmente del website [SoFiFa](https://sofifa.com/).
 
 
-## Librerias de R Utilizadas
+## Librerías  de R Utilizadas
 
-Para comenzar, es necesario leer (o instalar, en su defecto) las librerias CRAN contenidas a continuación, e importar la data, la cual extraigo directamente desde internet como un archivo csv.
+Para comenzar, es necesario leer (o instalar, en su defecto) las librerías CRAN contenidas a continuación, e importar la data, la cual extraigo directamente desde internet como un archivo csv.
 
 
 ```r
@@ -246,7 +246,7 @@ La columna de Posición, tiene por default muchos valores diferentes (*Position 
 
 ___
 
-```{r Visualizacion de la tabla estudio}
+```{r Visualización de la tabla estudio}
 #if (!require("DT")) install.packages('DT')
 
 library(knitr)
@@ -266,7 +266,7 @@ ___
 En el tratado de estos datos, podemos apreciar lo siguiente:
 
 ### Distribución de Variables Físicas
-Las lineas punteadas en cada histograma, representan el promedio para cada valor.
+Las líneas punteadas en cada histograma, representan el promedio para cada muestra.
 
 ```{r message = F, warning = F, fig.width = 10, fig.align = 'center'}
 #summary de la tabla FIFA2019
@@ -392,11 +392,12 @@ FIFA19 %>%
 ```
 
 Este es el resultado del plot de densidad por posición de jugador.
-Los forward, midfielder y defender, tienen formas simetricas, con valores de mediana casi iguales, lo que implica que teoricamente en "FIFA 19" estos estan bien balanceados. Sin embargo, para los Goalkeepers, la distribucion es diferente y la mediana menor a la de los demás. 
+Los “forward”, “midfielder” y “defenders”, tienen formas simétricas, con valores de mediana casi iguales, lo que implica que (teóricamente) en "FIFA 19" estos están bien balanceados. Sin embargo, para los “Goalkeepers”, la distribución es diferente y la mediana menor a la de los demás. 
 
 
 
-### Relacion entre *Salario* vs *Valor*
+
+### Relación entre *Wage* vs *Value*
 
 ```{r Wage Vs Value , warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
 FIFA19 %>%
@@ -429,7 +430,7 @@ En el diagrama de árbol, se aprecia dominancia de jugadores europeos en los cua
 
 ___
 
-## 💙 Mi Jugador Favorito 
+## Jugador Favorito
 
 En este segmento, se muestra a mi jugador preferido, el maravilloso:
 
@@ -443,7 +444,7 @@ Griezmann <- FIFA19[FIFA19$Name == "A. Griezmann",]
 ```
 
 
-[**Antoine Griezmann**](https://es.wikipedia.org/wiki/Antoine_Griezmann), nace en Mâcon - Borgoña, es un futbolista francés que juega como delantero en el Fútbol Club Barcelona de la Primera División de España. Además es internacional con la selección de fútbol de Francia y ganó la copa del mundo en Rusia 2018 con esta selección.
+[**Antoine Griezmann**](https://es.wikipedia.org/wiki/Antoine_Griezmann), nace en Mâcon - Borgoña, es un futbolista francés que juega como delantero en el Fútbol Club Barcelona de la Primera División de España. Además, es internacional con la selección de fútbol de Francia y ganó la copa del mundo en Rusia 2018 con esta selección.
 
 
 # 🇫🇷 **Visualización con Leaflet**
@@ -463,7 +464,7 @@ library(leaflet)
 library(RCurl)
 
 #Autenticación clave de Google
-my_key <- "LLAVE SECRETA"
+my_key <- readLines("secrets/my_key-example.txt")
 register_google(key = my_key)
 
 #Geolocalización de puntos
