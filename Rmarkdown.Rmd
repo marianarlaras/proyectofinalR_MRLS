@@ -22,13 +22,10 @@ knitr::opts_chunk$set(
 	message = FALSE,
 	warning = FALSE,
 	error = TRUE
-
 )
 ```
 
 ![](recursos/P1.jpg)
-
-_En mi caso, he decidido realizar esta práctica de forma divertida, para enfocar los conocimientos adquiridos en mi vida diaria._
 
 ___
 
@@ -45,8 +42,7 @@ menciona en su cuenta de twitter, destinada a expresiones regulares [(RegexTip)]
 - Las expresiones regulares son un pequeño lenguaje de programación, generalmente están contenidas dentro de otro lenguaje de programación, hay que pensar en ellas, como pequeños fragmentos de un idioma extranjero, como una cita en francés dentro de la prosa inglesa. Por ende, no hay que esperar que las reglas del idioma externo tengan ninguna relación con las reglas internas.
 - Los _Character clases_ ([]), son un pequeño sub-lenguaje dentro de las expresiones regulares. Una vez que te das cuenta de eso y no esperas que se apliquen las reglas para las expresiones fuera de ellos, pueden hacerse mas sencillos de entender.
 
-
-<center>Problemas triviales!</center>
+<center>Problemas triviales!?</center>
 
 <center>
 ![](recursos/RGX.png)
@@ -79,9 +75,7 @@ ___
 
 <blockquote class="twitter-tweet"><p lang="tl" dir="ltr"><font size="2.5">Regex crossword <a href="https://t.co/Uuj2gjYlWM">https://t.co/Uuj2gjYlWM</a></p>&mdash; Regular Expression (@RegexTip)</font> <a href="https://twitter.com/RegexTip/status/1168902012941078528?ref_src=twsrc%5Etfw">September 3, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr"> <font size="2.5">Outside of a character class, the only special characters in regular expressions are [\^$.|?*+() Most characters are treated literally.</p>&mdash; Regular Expression (@RegexTip) </font><a href="https://twitter.com/RegexTip/status/1163828543463264261?ref_src=twsrc%5Etfw">August 20, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
-
 
 ___
 
@@ -135,9 +129,11 @@ Table: Comparativa páginas de _R Markdown_
 ☑️ **Score** | <font size="7">`9.5/10` | <font size="7">`4/10` </font>
 </div>
 </center>
+
 ___
 
 # **⚽️Análisis Exploratorio FIFA 2019 **
+___
 
 En la presente sección, se realiza un breve análisis exploratorio de los datos contenidos en **FIFA 19 complete player Dataseet**, el cual expone los atributos detallados para cada jugador registrado en la ultima edición o base de datos FIFA19.
 
@@ -145,10 +141,11 @@ En la presente sección, se realiza un breve análisis exploratorio de los datos
 
 He utilizado el DS disponible en [GitHub](https://github.com/amanthedorkknight/fifa18-all-player-statistics/tree/master/2019), donde cada jugador se describe con mas de 80 atributos diferentes. Esta información se obtiene originalmente del website [SoFiFa](https://sofifa.com/).
 
+___
 
 ## Librerías  de R Utilizadas
 
-Para comenzar, es necesario leer (o instalar, en su defecto) las librerías CRAN contenidas a continuación, e importar la data, la cual extraigo directamente desde internet como un archivo csv.
+Para comenzar, es necesario leer (o instalar, en su defecto) las librerías CRAN contenidas a continuación, e importar la data, la cual se lee directamente desde internet como un archivo .csv
 
 
 ```r
@@ -451,9 +448,7 @@ Griezmann <- FIFA19[FIFA19$Name == "A. Griezmann",]
 
 En este aparto, con la ayuda de la API de [**Google Cloud Platform**](https://console.developers.google.com/), he graficado las ubicaciones de Mâcon y del Camp Nou, actual club del jugador en cuestión.
 
-
-```{r Leaflet, echo=FALSE, message=FALSE,  warning = F, fig.height = 6, fig.width = 8, fig.align = 'center'}
-
+```{r Visualización con Leaflet , warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
 #DONDE NACIÓ Y DONDE JUEGA, librerias necesarias:
 library(RgoogleMaps)
 library(ggmap)
@@ -476,6 +471,7 @@ coord <- as.data.frame(rbind(as.numeric(fcb),as.numeric(macon)))
 colnames(coord) <- c("lon","lat")
 coord$popup <- c("Where he is currently Playing","The birthplace of Griezmann")
 
+
 #plotear Mapa de Leaftlet
 map <- leaflet() %>%
   addTiles() %>% 
@@ -485,8 +481,6 @@ map
 ```
 
 
+
 <font size="1"> *Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime.” ― Muhammad Waseem* </font>
-
-
-
 </div>
