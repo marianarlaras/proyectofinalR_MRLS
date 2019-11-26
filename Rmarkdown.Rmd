@@ -179,7 +179,7 @@ library("dplyr")
 
 
 #LEER LA DATA 
-fifa2019 <- read.csv("https://raw.githubusercontent.com/amanthedorkknight/fifa18-all-player-statistics/master/2019/data.csv")
+fifa2019 <- read.csv("recursos/fifa19.csv")
 
 FIFA19 <- select(fifa2019, ID, X, Name, Age, Nationality, Height, Weight, Overall, Club, Value, Wage, Position,Preferred.Foot,Body.Type)
 
@@ -201,8 +201,8 @@ toNumberCurrency <- function(vector) {
   
   return(result)
 }
-FIFA19$Wage <- toNumberCurrency(FIFA19$Wage) 
-FIFA19$Value <- toNumberCurrency(FIFA19$Value)
+FIFA19$Wage <- suppressWarnings(toNumberCurrency(FIFA19$Wage))
+FIFA19$Value <- suppressWarnings(toNumberCurrency(FIFA19$Value))
 
 #CAMBIAR LA ALTURA A CENTIMETROS
 temp_1 <- as.numeric(substr(FIFA19$Height, 1, 1))*30.48
