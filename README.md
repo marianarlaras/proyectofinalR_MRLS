@@ -1,6 +1,8 @@
 # Proyecto Final - Business Performance Analysis
-Proyecto final Asignatura R
+Proyecto final Asignatura R 
+
 Profesor: Carlos Gil
+
 EAEBS - BigData2019B
 
 ## Resumen 🚀
@@ -54,7 +56,7 @@ library("leaflet")
 _Se ha utilizado una de las APIs de [**Google Cloud Platform**](https://console.developers.google.com/) para obtener las coordenadas que se plotean en [Leaflet](https://leafletjs.com/)._
 
 **PASOS IMPORTANTES PARA LA EJECUCIÓN DE LA API**
-- Para utilizar la API de *Google Maps Platform* contenida en el apartado **Visualización con Leaflet**, es necesario obtener una **API KEY**, propia de cada usuario (*por temas de seguridad, cada usuario debe utilizar crear su clave*).
+- Para utilizar la API de *Google Maps Platform* contenida en el apartado **Visualización con Leaflet**, es necesario obtener una **API KEY**, propia de cada usuario (*por temas de seguridad, cada usuario debe utilizar su clave*).
 - Obten tu clave de seguridad en el enlace de [Google Cloud Platform > credentials](https://console.cloud.google.com/apis/credentials) 
 - Posterior a tener tu clave, sobreescribe la información contenida en el documento **my_key-example.txt** que se encuentra en el fichero **secrets**: (secrets/my_key-example.txt), de esta forma puede ejecutarse el código con tus credenciales personales.
 
