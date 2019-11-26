@@ -463,7 +463,7 @@ library(leaflet)
 library(RCurl)
 
 #Autenticación clave de Google
-my_key <- "AIzaSyBqPCUB4wl_Gok13ywyiXm5F6sEpMoHAWI"
+my_key <- "LLAVE SECRETA"
 register_google(key = my_key)
 
 #Geolocalización de puntos
