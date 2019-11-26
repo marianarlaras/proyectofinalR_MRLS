@@ -448,7 +448,7 @@ Griezmann <- FIFA19[FIFA19$Name == "A. Griezmann",]
 
 En este aparto, con la ayuda de la API de [**Google Cloud Platform**](https://console.developers.google.com/), he graficado las ubicaciones de Mâcon y del Camp Nou, actual club del jugador en cuestión.
 
-```{r Visualización con Leaflet , warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
+```{r Visualización con Leaflet , warning = F, fig.height = 7.5, fig.width = 7, fig.align = 'center'}
 #DONDE NACIÓ Y DONDE JUEGA, librerias necesarias:
 library(RgoogleMaps)
 library(ggmap)
