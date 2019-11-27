@@ -9,9 +9,11 @@ output:
     toc: true
     toc_float: true
     number_sections: true
-    toc_depth: 6
-    fig_width:  10
+    collapsed: false
+    toc_depth: 4
+    fig_width: 10
     fig_height: 8
+    
 ---
 
 <div style="text-align: justify">
@@ -19,9 +21,9 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
 	echo = FALSE,
+	error = TRUE,
 	message = FALSE,
-	warning = FALSE,
-	error = TRUE
+	warning = FALSE
 )
 ```
 
@@ -143,37 +145,23 @@ He utilizado el DS disponible en [GitHub](https://github.com/amanthedorkknight/f
 
 ___
 
-## Librerías  de R Utilizadas
+## Requerimientos
 
-Para comenzar, es necesario leer (o instalar, en su defecto) las librerías CRAN contenidas a continuación, e importar la data, la cual se lee directamente desde internet como un archivo .csv
+*Se solicita por favor, prestar especial atención al segmento  Pre-requisitos, contenidos en el [READ ME](https://github.com/marianarlaras/proyectofinalR_MRLS#pre-requisitos) del proyecto, donde se exponen las librerías CRAN necesarias para la ejecución de este archivo e instrucciones pertinentes para la ejecución de la API.*
 
+## Visualización de la Tabla Estudio
 
-```r
-library("RCurl")
-library("dplyr")
-library("knitr")
-library("kableExtra")
-library("viridis")    
-library("ggplot2")
-library("gridExtra")
-library("grid")
-library("ggridges")
-library("treemap")
-library("tidyverse")
-library("stringr")
-library("ggforce")
-library("DT")
-library("RgoogleMaps")
-library("ggmap")
-library("rjson")
-library("jsonlite")
-library("leaflet")
-```
+La columna de Posición, tiene por default muchos valores diferentes (*Position Levels: 28*) correspondientes a todas las posibles posiciones de un jugador en la cancha, para este estudio agrupo dichos valores en 4 grandes familias:
+
+- FWD (Delanteros)
+- DEF (Defensas)
+- MID (Mediocampos)
+- GK (Guardametas)
 
 La dimensión de la tabla original, es la siguiente:
 
 
-```{r Leer la Data desde Internet y hacer limpieza de datos, echo=FALSE, warning=FALSE, paged.print=TRUE}
+```{r Leer la Data desde Internet y hacer limpieza de datos, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
 library("RCurl")
 library("dplyr")
 
@@ -181,7 +169,7 @@ library("dplyr")
 #LEER LA DATA 
 fifa2019 <- read.csv("recursos/fifa19.csv")
 
-#FILTRAR POR COLUMNAS QUE NECESITO
+# FILTRAR POR COLUMNAS QUE NECESITO
 colff <- c("ID", "X", "Name", "Age", "Nationality", "Height", "Weight", "Overall",
            "Club", "Value", "Wage", "Position","Preferred.Foot","Body.Type")
 FIFA19 <- fifa2019[,colff]
@@ -228,19 +216,9 @@ dim(fifa2019)
 
 ```
 
-Por dicho motivo, se hizo necesario el filtrado de la misma.
+*Para su estudio, se hace necesario el filtrado de la misma.*
 
 ___
-
-## Visualización de la Tabla Estudio
-
-La columna de Posición, tiene por default muchos valores diferentes (*Position Levels: 28*) correspondientes a todas las posibles posiciones de un jugador en la cancha, para este estudio agrupo dichos valores en 4 grandes familias:
-
-- FWD (Delanteros)
-- DEF (Defensas)
-- MID (Mediocampos)
-- GK (Guardametas)
-
 
 **FIFA 2019 DataSet Filtered**
 
@@ -411,7 +389,6 @@ Los “forward”, “midfielder” y “defenders”, tienen formas simétricas
 
 
 
-
 ### Relación entre *Wage* vs *Value*
 
 ```{r Wage Vs Value , warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
@@ -464,7 +441,7 @@ Griezmann <- FIFA19[FIFA19$Name == "A. Griezmann",]
 
 # 🇫🇷 **Visualización con Leaflet**
 
-En este aparto, con la ayuda de la API de [**Google Cloud Platform**](https://console.developers.google.com/), he graficado las ubicaciones de Mâcon y del Camp Nou, actual club del jugador en cuestión.
+En este apartadoo, con la ayuda de la API de [**Google Cloud Platform**](https://console.developers.google.com/), he graficado las ubicaciones de Mâcon y del Camp Nou, actual club del jugador en cuestión.
 
 ```{r Visualización con Leaflet , warning = F, fig.height = 7.5, fig.width = 7, fig.align = 'center'}
 #DONDE NACIÓ Y DONDE JUEGA, librerias necesarias:
@@ -488,7 +465,6 @@ fcb <- geocode("Camp Nou")
 coord <- as.data.frame(rbind(as.numeric(fcb),as.numeric(macon)))
 colnames(coord) <- c("lon","lat")
 coord$popup <- c("Where he is currently Playing","The birthplace of Griezmann")
-
 
 #plotear Mapa de Leaftlet
 map <- leaflet() %>%
