@@ -1,6 +1,6 @@
 ---
-title: "Proyecto Final R"
-author: "Mariana Lara"
+title: "Proyecto Final - R"
+author: "Mariana Lara Sarmiento"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -181,7 +181,10 @@ library("dplyr")
 #LEER LA DATA 
 fifa2019 <- read.csv("recursos/fifa19.csv")
 
-FIFA19 <- select(fifa2019, ID, X, Name, Age, Nationality, Height, Weight, Overall, Club, Value, Wage, Position,Preferred.Foot,Body.Type)
+#FILTRAR POR COLUMNAS QUE NECESITO
+colff <- c("ID", "X", "Name", "Age", "Nationality", "Height", "Weight", "Overall",
+           "Club", "Value", "Wage", "Position","Preferred.Foot","Body.Type")
+FIFA19 <- fifa2019[,colff]
 
 #CAMBIAR LOS NOMBRES EN BLANCO POR _
 names(FIFA19) <- gsub(' ', '_', names(FIFA19))
@@ -321,6 +324,12 @@ p3 <- FIFA19 %>%
   labs(subtitle = summary_data(FIFA19$Weight), x="Peso")  
 p3
 
+c <- c("FC Barcelona","Paris Saint-Germain","Real Madrid")
+clubs <- FIFA19[FIFA19$Club == c,]
+ggplot(clubs, aes(x = Weight , y = Height )) + 
+  geom_jitter(colour = "red") + geom_smooth(alpha = 0.2)+ facet_grid(~Club)+
+  labs(title = "Altura y Peso de Jugadores por Club", x = "Peso (kg)", y = "Altura (cm)",caption = "Comparativa de la composición física de los jugadores diferenciados por Clubs")
+
 
 # Pie Favorito
 temp <- FIFA19$Preferred.Foot %>% 
@@ -370,6 +379,15 @@ El tipo de cuerpo con mayor porcentaje es el "normal", seguido por "delgado" y l
 - **Contextura de Cuerpos:** Normal (58.19%)
 
 
+En este orden de ideas, comparando la composición física de jugadores segmentados por Club, (*FC Barcelona, Paris Saint-Germain, Real Madrid*), se aprecia que:
+
+- FCB, tiene mayor variación en la contextura de sus jugadores.
+- FCB, tiene al jugador mas delgado~bajo y al mas pesado~alto. Salvo estos jugadores, la mayoría se encuentra en rangos similares.
+- PSG, presenta el grupo de jugadores mas agrupados en la media, muestra mayor variación en alturas que en pesos.
+- RM, concentra la mayor cantidad de puntos en jugadores pesados.
+
+
+
 ### Distribución de Posiciones Generales
 
 ```{r DISTRIBUCION DE POSICIONES, warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
@@ -379,7 +397,7 @@ FIFA19 %>%
   filter(!is.na(Position)) %>% 
   ggplot(aes(Overall, Position, fill = Position)) + 
   ggtitle("Distribucion de Posiciones Generales")+
-  geom_density_ridges(alpha = 0.9) + 
+  geom_density_ridges(alpha = 0.7) + 
   scale_fill_manual(values = c('#5ab4ac', '#8da0cb', '#8856a7', '#ffffb3')) + 
   labs(subtitle = paste('Median of Overall', 
                         '\n- FWD:', median(FIFA19$Overall[FIFA19$Position == 'FWD'], na.rm = T), 
