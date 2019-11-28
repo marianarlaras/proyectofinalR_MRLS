@@ -31,27 +31,26 @@ _El presente proyecto condensa gran parte de lo aprendido en la materia **Busine
 _Para realizar esta practica, se requiere tener instalado previamente los siguientes componentes y la lectura de sus respectivas librerías:_
 
 ```r
+
+library("tidyverse")
 library("RCurl")
 library("dplyr")
 library("knitr")
 library("kableExtra")
-library("kableExtra")
 library("viridis")    
 library("ggplot2")
+library("ggforce")
+library("ggmap")
 library("gridExtra")
 library("grid")
 library("ggridges")
 library("treemap")
-library("tidyverse")
 library("stringr")
-library("ggforce")
 library("DT")
 library("RgoogleMaps")
-library("ggmap")
 library("rjson")
 library("jsonlite")
 library("leaflet")
-library("tidyverse")
 
 ```
 
@@ -72,7 +71,7 @@ _Se ha utilizado una de las APIs de [**Google Cloud Platform**](https://console.
 * [Google Cloud Platform](https://console.developers.google.com/) - Utilizado para extraer coordenadas de geolocalización. 🌍 
 * [twitter](https://twitter.com/home) - Utilizado para obtener tweets de interés.🐦
 * MUCHAS FUENTES DE AYUDA E INTERÉS.
-
+  
 
 ## <a name="Expresiones-de-gratitud"></a> Agradecimientos 🎁
 * A las clases de mis profesores y la curiosidad que han despertado en mí.
