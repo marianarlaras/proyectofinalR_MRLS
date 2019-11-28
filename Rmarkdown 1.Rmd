@@ -155,14 +155,16 @@ La columna de Posición, tiene por default muchos valores diferentes (*Position 
 - MID (Mediocampos)
 - GK (Guardametas)
 
-La dimensión de la tabla original, es la siguiente:
-
 
 ```{r Leer la Data desde Internet y hacer limpieza de datos, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
 
 library("tidyverse")
 library("RCurl")
 library("dplyr")
+library("knitr")
+library("kableExtra")
+library("DT")
+
 
 #LEER LA DATA 
 FIFA19 <- read.csv("recursos/fifa19.csv", header = TRUE, stringsAsFactors = FALSE)
@@ -206,29 +208,16 @@ levels(x) <- list(GK  = c("GK"),
 
 FIFA19 <- mutate(FIFA19, Position = x)
 
-print(paste("El Dataset FIFA19 contiene", dim(FIFA19)[1], "filas y", dim(FIFA19)[2], "columnas"))
 
-```
-
-___
-
-**FIFA 2019 DataSet Filtered**
-
-___
-
-```{r Visualización de la tabla estudio, fig.width=10, message=FALSE, warning=FALSE}
 #if (!require("DT")) install.packages('DT')
 
-library(knitr)
-library(kableExtra)
-library(DT)
-library(dplyr)
-
-
-FIFA19[1:100,c(3,4,6,10,22,27,28)] %>%
+DT <- FIFA19[1:100,c(3,4,6,10,22,27,28)] %>%
   DT::datatable() %>%
   DT::formatStyle(columns = c(1:13), fontSize = '80%',class = 'compact')
 
+print(paste("El Dataset FIFA19 contiene", dim(FIFA19)[1], "filas y", dim(FIFA19)[2], "columnas"))
+
+DT
 
 ```
 
@@ -448,7 +437,7 @@ library(leaflet)
 library(RCurl)
 
 #Autenticación clave de Google
-my_key <- readLines("secrets/my_key-example.txt")
+my_key <- readLines("secrets/my_key-example.txt", warn=FALSE)
 register_google(key = my_key)
 
 #Geolocalización de puntos
