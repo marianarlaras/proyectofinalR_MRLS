@@ -35,6 +35,7 @@ library("RCurl")
 library("dplyr")
 library("knitr")
 library("kableExtra")
+library("kableExtra")
 library("viridis")    
 library("ggplot2")
 library("gridExtra")
@@ -50,6 +51,8 @@ library("ggmap")
 library("rjson")
 library("jsonlite")
 library("leaflet")
+library("tidyverse")
+
 ```
 
 ## <a name="API"></a>API 🔧
