@@ -154,7 +154,7 @@ La columna de Posición, tiene por default muchos valores diferentes (*Position 
 - MID (Mediocampos)
 - GK (Guardametas)
 
-```{r Leer la Data desde Internet y hacer limpieza de datos, echo=FALSE}
+```{r Leer la Data desde Internet y hacer limpieza de datos, echo=FALSE, paged.print=TRUE}
 
 library("tidyverse")
 library("RCurl")
@@ -165,20 +165,20 @@ library("DT")
 library("ggplot2")
 library("viridis")    
 library("ggridges")
-
+library("kableExtra")
 
 #LEER LA DATA 
 FIFA19 <- read.csv("recursos/fifa19.csv", header = TRUE, stringsAsFactors = FALSE)
 names(FIFA19) <- gsub(" ","_", names(FIFA19))
 
-print(paste("El Dataset FIFA19 contiene", dim(FIFA19)[1], "filas y", dim(FIFA19)[2], "columnas"))
+print(paste("El Dataset FIFA19 contiene", dim(FIFA19)[1], "filas y", dim(FIFA19)[2], "columnas. A continuación una muestra:"))
 
-datatable(head(FIFA19[,c("Name", "Age", "Nationality", "Height", "Weight", "Club", "Wage", "Position")], n=100 ))
+#knitr::kable(FIFA19[1:100,c("Name", "Age", "Nationality", "Height", "Weight", "Club", "Wage", "Position")])
 
-
-
-#IMPRIMIR LA TABLA ACA
-
+kable((FIFA19[1:200,c("Name", "Age", "Nationality", "Height", "Weight", "Club", "Wage", "Position")]), digits = 2, format = "html", row.names = TRUE) %>% kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = F,
+                font_size = 10,
+                position = "left") %>% scroll_box(height = "250px")
 ```
 
 ## Análisis Exploratorio de la Data
@@ -225,10 +225,6 @@ levels(x) <- list(GK  = c("GK"),
 
 FIFA19 <- mutate(FIFA19, Position = x)
 
-
-#FIFA19[1:100,c(3,4,6,10,22,27,28)] %>%
- # DT::datatable() %>%
-#  DT::formatStyle(columns = c(1:13), fontSize = '80%',class = 'compact')
 
 ```
 
@@ -444,6 +440,7 @@ register_google(key = my_key)
 #Geolocalización de puntos
 macon <- geocode("Macon, Francia")
 fcb <- geocode("Camp Nou")
+
 
 #crear tabla  de puntos
 coord <- as.data.frame(rbind(as.numeric(fcb),as.numeric(macon)))
