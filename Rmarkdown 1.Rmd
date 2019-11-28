@@ -206,7 +206,7 @@ levels(x) <- list(GK  = c("GK"),
 
 FIFA19 <- mutate(FIFA19, Position = x)
 
-print(paste("El Dataset contiene", dim(FIFA19)[1], "filas y", dim(FIFA19)[2], "columnas"))
+print(paste("El Dataset FIFA19 contiene", dim(FIFA19)[1], "filas y", dim(FIFA19)[2], "columnas"))
 
 ```
 
