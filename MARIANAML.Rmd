@@ -6,11 +6,11 @@ output:
   html_document:
     theme: spacelab
     highlight: tango
+    number_sections: true
     toc: true
     toc_float: true
     collapsed: false
     toc_depth: 4
-    number_sections: TRUE
 ---
 
 <div style="text-align: justify">
@@ -49,7 +49,6 @@ menciona en su cuenta de twitter, destinada a expresiones regulares [(RegexTip)]
 ___
 
 ## Comparativa Enlaces de Interés
-___
 
 En la tabla a continuación, comparo dos páginas web dedicadas a enseñar de expresiones regulares, donde la columna de la izquierda representa mi fuente ganadora y la de la derecha.
 
@@ -68,6 +67,7 @@ Table: Comparativa páginas de _Regex_
 ___
 
 Algunos Ejemplos de tweets contenidos en la cuenta de   [(RegexTip)](https://twitter.com/RegexTip):
+
 ___
 
 <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr"><font size="2.5">Reminder: * means zero or more, + means one or more, ? means zero or one.</p>&mdash; Regular Expression (@RegexTip) <a href="https://twitter.com/RegexTip/status/1192109981027504129?ref_src=twsrc%5Etfw">November 6, 2019</font></a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -79,6 +79,7 @@ ___
 ___
 
 # **📓RMarkDown**
+
 ___
 
 R Markdown es un formato que permite la fácil creación de documentos, presentaciones dinámicas e informes en R, utilizando de fondo un lenguaje llamado **Markdown** para enriquecer el informe final. 
@@ -112,7 +113,6 @@ Entre sus numerosas utilidades, se pueden mencionar las siguientes:
 ___
 
 ## Comparativa Enlaces de Interés
-___
 
 De igual forma que con el segmento anterior, en la tabla a continuación, comparo dos páginas web dedicadas a enseñar de RMarkdown, la columna de la izquierda continúa representando la ganadora.
 
@@ -142,15 +142,10 @@ He utilizado el DS disponible en [GitHub](https://github.com/amanthedorkknight/f
 ___
 
 ## Requerimientos
-___
 
 *Se solicita por favor, prestar especial atención al segmento  Pre-requisitos, contenidos en el [READ ME](https://github.com/marianarlaras/proyectofinalR_MRLS#pre-requisitos) del proyecto, donde se exponen las librerías CRAN necesarias para la ejecución de este archivo e instrucciones pertinentes para la ejecución de la API.*
 
-___
-
 ## Visualización de la Tabla Estudio
-___
-
 
 La columna de Posición, tiene por default muchos valores diferentes (*Position Levels: 28*) correspondientes a todas las posibles posiciones de un jugador en la cancha, para este estudio agrupo dichos valores en 4 grandes familias:
 
@@ -159,7 +154,7 @@ La columna de Posición, tiene por default muchos valores diferentes (*Position 
 - MID (Mediocampos)
 - GK (Guardametas)
 
-```{r Leer la Data desde Internet y hacer limpieza de datos, echo=FALSE, warning=FALSE, paged.print=TRUE}
+```{r Leer la Data desde Internet y hacer limpieza de datos, echo=FALSE}
 
 library("tidyverse")
 library("RCurl")
@@ -178,18 +173,21 @@ names(FIFA19) <- gsub(" ","_", names(FIFA19))
 
 print(paste("El Dataset FIFA19 contiene", dim(FIFA19)[1], "filas y", dim(FIFA19)[2], "columnas"))
 
+datatable(head(FIFA19[,c("Name", "Age", "Nationality", "Height", "Weight", "Club", "Wage", "Position")], n=100 ))
 
 
-FIFA19[1:100,c(3,4,6,10,22,27,28)] %>%
-  DT::datatable() %>%
-  DT::formatStyle(columns = c(1:13), fontSize = '80%',class = 'compact')
 
+#IMPRIMIR LA TABLA ACA
 
 ```
 
+## Análisis Exploratorio de la Data
+En el tratado de estos datos, podemos apreciar lo siguiente:
 
+### Distribución de Variables Físicas
+Las líneas punteadas en cada histograma, representan el promedio para cada muestra.
 
-```{r CONVERSION DE Wage AND Value, echo=FALSE, warning=FALSE}
+```{r CONVERSION DE Wage AND Value, echo=FALSE}
 
 #CONVERTIR "WAGE" AND "VALUE" EN NUMEROS:
 toNumberCurrency <- function(vector) {
@@ -228,20 +226,17 @@ levels(x) <- list(GK  = c("GK"),
 FIFA19 <- mutate(FIFA19, Position = x)
 
 
+#FIFA19[1:100,c(3,4,6,10,22,27,28)] %>%
+ # DT::datatable() %>%
+#  DT::formatStyle(columns = c(1:13), fontSize = '80%',class = 'compact')
+
 ```
 
 
-____
 
-## Análisis Exploratorio de la Data
-En el tratado de estos datos, podemos apreciar lo siguiente:
-___
-
-### Distribución de Variables Físicas
-*Las líneas punteadas en cada histograma, representan el promedio para cada muestra:*
+```{r Analisis Exploratorio de la Data, message = F, warning = F, fig.align = 'center'}
 
 
-```{r Analisis Exploratorio de la Data, message=FALSE, warning=FALSE}
 #summary de la tabla FIFA2019
 summary_data <- function(FIFA2019) {
   paste('Mean:', round(mean(FIFA2019, na.rm = T), 2), 
@@ -355,11 +350,7 @@ En este orden de ideas, comparando la composición física de jugadores segmenta
 - PSG, presenta el grupo de jugadores mas agrupados en la media, muestra mayor variación en alturas que en pesos.
 - RM, concentra la mayor cantidad de puntos en jugadores pesados.
 
-___
-
 ### Distribución de Posiciones Generales
-
-___
 
 ```{r DISTRIBUCION DE POSICIONES, warning = F, fig.height = 6.5, fig.width = 8, fig.align = 'center'}
 
@@ -379,12 +370,8 @@ FIFA19 %>%
 Este es el resultado del plot de densidad por posición de jugador.
 Los “forward”, “midfielder” y “defenders”, tienen formas simétricas, con valores de mediana casi iguales, lo que implica que (teóricamente) en "FIFA 19" estos están bien balanceados. Sin embargo, para los “Goalkeepers”, la distribución es diferente y la mediana menor a la de los demás. 
 
-___
 
 ### Relación entre *Wage* vs *Value*
-
-___
-
 
 ```{r Wage Vs Value , warning = F, fig.height = 6.5, fig.width = 8, fig.align = 'center'}
 FIFA19 %>%
@@ -399,12 +386,10 @@ La distribución de *Wage* y *Value* está sesgada, se puede ver que la mayoría
 
 ___
 
+
 ### Nacionalidad de los Jugadores (TREEMAP)
 
-___
-
-
-```{r Nacionalidd de los Jugadores con TreeMap, fig.height=6.5, fig.width=8, warning=FALSE}
+```{r Nacionalidd de los Jugadores con TreeMap , warning = F, fig.height = 6.5, fig.width = 8, fig.align = 'center'}
 #if (!require("treemap")) install.packages('treemap')
 
 library("treemap")
@@ -421,8 +406,6 @@ ___
 
 ## Jugador Favorito
 
-___
-
 En este segmento, se muestra a mi jugador preferido, el maravilloso:
 
 
@@ -430,7 +413,7 @@ En este segmento, se muestra a mi jugador preferido, el maravilloso:
 
 
 
-```{r Mi Jugador Favorito, echo=FALSE, message=FALSE, warning=FALSE}
+```{r Mi Jugador Favorito, echo=FALSE}
 
 Griezmann <- FIFA19[FIFA19$Name == "A. Griezmann",]
 (Griezmann)[3:8]
@@ -439,24 +422,20 @@ Griezmann <- FIFA19[FIFA19$Name == "A. Griezmann",]
 
 [**Antoine Griezmann**](https://es.wikipedia.org/wiki/Antoine_Griezmann), nace en Mâcon - Borgoña, es un futbolista francés que juega como delantero en el Fútbol Club Barcelona de la Primera División de España. Además, es internacional con la selección de fútbol de Francia y ganó la copa del mundo en Rusia 2018 con esta selección.
 
-___
 
 # 🇫🇷 **Visualización con Leaflet**
 
-___
+En este apartadoo, con la ayuda de la API de [**Google Cloud Platform**](https://console.developers.google.com/), he graficado las ubicaciones de Mâcon y del Camp Nou, actual club del jugador en cuestión.
 
-En este apartado, con la ayuda de la API de [**Google Cloud Platform**](https://console.developers.google.com/), he graficado las ubicaciones de Mâcon y del Camp Nou, actual club del jugador en cuestión.
-
-```{r Visualización con Leaflet, fig.height=7.5, fig.width=7, warning=FALSE}
-
+```{r Visualización con Leaflet , warning = F, fig.height = 7.5, fig.width = 7, fig.align = 'center'}
 #DONDE NACIÓ Y DONDE JUEGA, librerias necesarias:
-
 library("RgoogleMaps")
 library("ggmap")
 library("ggplot2")
 library("rjson")
 library("jsonlite")
 library("leaflet")
+library("RCurl")
 
 #Autenticación clave de Google
 my_key <- readLines("secrets/my_key-example.txt")
@@ -475,10 +454,14 @@ coord$popup <- c("Where he is currently Playing","The birthplace of Griezmann")
 map <- leaflet() %>%
   addTiles() %>% 
   addMarkers(data = coord, lng=~lon, lat=~lat,popup=~popup)
-
 map
 
 ```
 
+
 <font size="2"> *Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime.” ― Muhammad Waseem* </font>
+
 </div>
+
+
+
