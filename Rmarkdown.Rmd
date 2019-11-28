@@ -1,5 +1,5 @@
 ---
-title: "Proyecto Final - R"
+title: "Proyecto Final - Business Performance Analysis"
 author: "Mariana Lara Sarmiento"
 date: "`r Sys.Date()`"
 output:
@@ -11,9 +11,6 @@ output:
     number_sections: true
     collapsed: false
     toc_depth: 4
-    fig_width: 10
-    fig_height: 8
-    
 ---
 
 <div style="text-align: justify">
@@ -170,11 +167,9 @@ library("dplyr")
 fifa2019 <- read.csv("recursos/fifa19.csv")
 
 # FILTRAR POR COLUMNAS QUE NECESITO
-colff <- c("ID", "X", "Name", "Age", "Nationality", "Height", "Weight", "Overall",
-           "Club", "Value", "Wage", "Position","Preferred.Foot","Body.Type")
-FIFA19 <- fifa2019[,colff]
+FIFA19 <- as.data.frame(fifa2019[,c("ID", "X", "Name", "Age", "Nationality", "Height", "Weight", "Overall","Club", "Value", "Wage", "Position","Preferred.Foot","Body.Type")])
 
-#CAMBIAR LOS NOMBRES EN BLANCO POR _
+#CAMBIAR LOS NOMBRES EN BLANCO EN COLUMNA NAME POR _
 names(FIFA19) <- gsub(' ', '_', names(FIFA19))
 
 #CONVERTIR "WAGE" AND "VALUE" EN NUMEROS:
@@ -368,7 +363,7 @@ En este orden de ideas, comparando la composición física de jugadores segmenta
 
 ### Distribución de Posiciones Generales
 
-```{r DISTRIBUCION DE POSICIONES, warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
+```{r DISTRIBUCION DE POSICIONES, warning = F, fig.height = 6.5, fig.width = 8, fig.align = 'center'}
 library(ggridges)
 
 FIFA19 %>% 
@@ -391,7 +386,7 @@ Los “forward”, “midfielder” y “defenders”, tienen formas simétricas
 
 ### Relación entre *Wage* vs *Value*
 
-```{r Wage Vs Value , warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
+```{r Wage Vs Value , warning = F, fig.height = 6.5, fig.width = 8, fig.align = 'center'}
 FIFA19 %>%
   ggplot(aes(x = Value, y = Wage)) +
   geom_point(alpha = 1/3) + 
@@ -407,7 +402,7 @@ ___
 
 ### Nacionalidad de los Jugadores (TREEMAP)
 
-```{r Nacionalidd de los Jugadores con TreeMap , warning = F, fig.height = 7.5, fig.width = 10, fig.align = 'center'}
+```{r Nacionalidd de los Jugadores con TreeMap , warning = F, fig.height = 6.5, fig.width = 8, fig.align = 'center'}
 #if (!require("treemap")) install.packages('treemap')
 
 library("treemap")
@@ -476,5 +471,5 @@ map
 
 
 
-<font size="1"> *Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime.” ― Muhammad Waseem* </font>
+<font size="2"> *Give a man a program, frustrate him for a day.Teach a man to program, frustrate him for a lifetime.” ― Muhammad Waseem* </font>
 </div>
